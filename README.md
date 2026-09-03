@@ -2,7 +2,10 @@
 
 > 从真实生产 harness 蒸馏的工程脚本，经过实战验证，开箱即用。
 
-![MIT](https://img.shields.io/badge/license-MIT-green.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Tools](https://img.shields.io/badge/tools-8-blue.svg)
+![Projects](https://img.shields.io/badge/projects-3-purple.svg)
+![Scripts](https://img.shields.io/badge/scripts-5-orange.svg)
 
 ## 这是什么
 
