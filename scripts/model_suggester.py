@@ -1,5 +1,5 @@
-***REMOVED***!/usr/bin/env python3
-***REMOVED*** -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 model_suggester.py —— 行途模型智能提示器
 ==========================================
@@ -10,7 +10,7 @@ model_suggester.py —— 行途模型智能提示器
     python3 model_suggester.py "帮我写一篇公众号深度文"
     python3 model_suggester.py --time 23:00 "周末批量生产 3 篇"
     python3 model_suggester.py --json "看一下这张截图里的封面"
-    echo "查一下 XX 的资料" | python3 model_suggester.py      ***REMOVED*** 交互/管道
+    echo "查一下 XX 的资料" | python3 model_suggester.py      # 交互/管道
 
 硬规则（按优先级）：
     1. 黑名单拦截：任务里点名 kimi-k3 等 → 直接警告并给替代
@@ -27,7 +27,7 @@ from datetime import datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONF = os.path.join(HERE, "model_assignment.json")
 
-NIGHT_START, NIGHT_END = 22, 8  ***REMOVED*** 22:00 - 07:59 为夜间
+NIGHT_START, NIGHT_END = 22, 8  # 22:00 - 07:59 为夜间
 
 
 def load_conf():
@@ -49,27 +49,27 @@ def suggest(text, now=None):
     conf = load_conf()
     warns = []
 
-    ***REMOVED*** 0) 黑名单拦截
+    # 0) 黑名单拦截
     for bl in conf.get("blacklist", []):
         if bl["模型"].lower() in text.lower():
             warns.append(f"⚠️ 点名了黑名单模型 {bl['模型']}（{bl['倍率']}）：{bl['原因']}。")
 
-    ***REMOVED*** 1) 图片强制
+    # 1) 图片强制
     visual = next(a for a in conf["assignment"] if "5v" in a["模型"])
     if hit_score(text, visual.get("signals", [])) > 0:
         return build(text, visual, conf, warns, reason="命中读图/截图/封面信号，glm-5v 是唯一带视觉的模型", now=now)
 
-    ***REMOVED*** 2) hy3 夜间信号
+    # 2) hy3 夜间信号
     night_hy3 = next(a for a in conf["assignment"] if "夜间版" in a["模型"])
     if hit_score(text, night_hy3.get("signals", [])) > 0:
         return build(text, night_hy3, conf, warns, reason="命中夜间/批量生产信号，0.00x 白嫖优先", now=now)
 
-    ***REMOVED*** 3) 普通打分
+    # 3) 普通打分
     scored = [(a, hit_score(text, a.get("signals", []))) for a in conf["assignment"]]
     scored.sort(key=lambda x: -x[1])
     top, top_score = scored[0][0], scored[0][1]
 
-    ***REMOVED*** 4) Auto 判定：命中 auto 信号且不低于任一创作场景
+    # 4) Auto 判定：命中 auto 信号且不低于任一创作场景
     auto = conf["auto_mode"]
     auto_score = hit_score(text, auto.get("signals", []))
     if auto_score > 0 and auto_score >= top_score:
@@ -98,13 +98,13 @@ def build(text, chosen, conf, warns, reason, now=None):
         "警告": warns,
         "备选": [],
     }
-    ***REMOVED*** 备选：不同模型的次高分配
+    # 备选：不同模型的次高分配
     for a in conf["assignment"]:
         if a["模型"] != chosen["模型"] and hit_score(text, a.get("signals", [])) > 0:
             out["备选"].append({"模型": a["模型"], "倍率": a["倍率"], "命中": hit_score(text, a.get("signals", []))})
     out["备选"] = sorted(out["备选"], key=lambda x: -x["命中"])[:2]
 
-    ***REMOVED*** 夜间白嫖提示：推荐是 Pro/Flash 且非夜间场景本身
+    # 夜间白嫖提示：推荐是 Pro/Flash 且非夜间场景本身
     if night and chosen["模型"] in ("deepseek-v4-pro", "deepseek-v4-flash"):
         out["夜间提示"] = "🌙 现在是夜间时段，同任务可切 hy3 夜间版（0.00x）白嫖；非批量急稿建议直接切。"
     return out
@@ -146,7 +146,7 @@ def main():
         text = " ".join(args)
         render(suggest(text, now), json_mode)
         return
-    ***REMOVED*** 管道或交互
+    # 管道或交互
     if not sys.stdin.isatty():
         text = sys.stdin.read().strip()
         if text:

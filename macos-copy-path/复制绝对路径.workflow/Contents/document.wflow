@@ -59,13 +59,13 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>***REMOVED***!/bin/zsh
-***REMOVED*** 复制选中文件/文件夹的绝对路径到剪贴板
+					<string>#!/bin/zsh
+# 复制选中文件/文件夹的绝对路径到剪贴板
 for f in "$@"; do
     realpath "$f"
 done | pbcopy
 
-osascript -e "display notification "已复制 $***REMOVED*** 个绝对路径" with title "复制绝对路径""
+osascript -e "display notification "已复制 $# 个绝对路径" with title "复制绝对路径""
 </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>

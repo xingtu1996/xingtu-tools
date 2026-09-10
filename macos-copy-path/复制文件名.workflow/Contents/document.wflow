@@ -59,13 +59,13 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>***REMOVED***!/bin/zsh
-***REMOVED*** 复制选中文件/文件夹的文件名到剪贴板
+					<string>#!/bin/zsh
+# 复制选中文件/文件夹的文件名到剪贴板
 for f in "$@"; do
     basename "$f"
 done | pbcopy
 
-osascript -e "display notification "已复制 $***REMOVED*** 个文件名" with title "复制文件名""
+osascript -e "display notification "已复制 $# 个文件名" with title "复制文件名""
 </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>

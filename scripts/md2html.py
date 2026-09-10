@@ -1,5 +1,5 @@
-***REMOVED***!/usr/bin/env python3
-***REMOVED*** -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 md2html.py · 把 Markdown 转成中文友好、离线可用的单文件 HTML（pandoc 封装）
 用法：
@@ -55,11 +55,11 @@ def main():
     if out is None:
         out = str(pathlib.Path(src).with_suffix(".html"))
     if title is None:
-        ***REMOVED*** 从首个一级标题取，否则用文件名
+        # 从首个一级标题取，否则用文件名
         try:
             with open(src, encoding="utf-8") as f:
                 for line in f:
-                    if line.startswith("***REMOVED*** "):
+                    if line.startswith("# "):
                         title = line[2:].strip()
                         break
         except Exception:
@@ -71,7 +71,7 @@ def main():
         print(f"[md2html] 未找到 pandoc: {PANDOC}")
         sys.exit(2)
 
-    ***REMOVED*** v1.1: 图片 base64 内嵌，避免 pandoc 相对路径失效
+    # v1.1: 图片 base64 内嵌，避免 pandoc 相对路径失效
     tmp = None
     working_src = src
     has_local_img = "!["

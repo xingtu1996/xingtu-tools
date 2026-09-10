@@ -1,4 +1,4 @@
-***REMOVED*** XingTu Tools · 工程脚本工具集
+# XingTu Tools · 工程脚本工具集
 
 > 从真实生产 harness 蒸馏的工程脚本，经过实战验证，开箱即用。
 
@@ -7,11 +7,11 @@
 ![Projects](https://img.shields.io/badge/projects-3-purple.svg)
 ![Scripts](https://img.shields.io/badge/scripts-5-orange.svg)
 
-***REMOVED******REMOVED*** 这是什么
+## 这是什么
 
 `xingtu-tools` 是行途开源矩阵的**工程脚本资产仓**。收录在真实项目维护中打磨的通用脚本与本地工具——不绑定任何特定公司/业务，可直接复用。
 
-***REMOVED******REMOVED*** 工具清单
+## 工具清单
 
 | 位置 | 工具 | 说明 |
 |------|------|------|
@@ -24,29 +24,29 @@
 | yuanbao-card-parser/ | 分享卡片解析 | 前端解析分享卡片（含 samples）|
 | macos-copy-path/ | macOS 复制路径 | Finder/Raycast 复制绝对/相对路径工具 |
 
-***REMOVED******REMOVED*** 用法
+## 用法
 
 ```bash
-***REMOVED*** 多数脚本零依赖（Python 标准库 / bash）
+# 多数脚本零依赖（Python 标准库 / bash）
 python3 scripts/md2html.py --help
 
-***REMOVED*** 连库查询（DSN 走环境变量 NEWAPI_DB_DSN，密码不进命令行）
+# 连库查询（DSN 走环境变量 NEWAPI_DB_DSN，密码不进命令行）
 bash scripts/qb-query.sh "SELECT 1"
 ```
 
-***REMOVED******REMOVED*** 目录结构
+## 目录结构
 
 ```
-scripts/             ***REMOVED*** 通用脚本（零依赖优先）
-yuanbao-share-parser/  ***REMOVED*** 元宝分享解析器
-yuanbao-card-parser/   ***REMOVED*** 分享卡片解析器（含前端实现 + samples）
-macos-copy-path/       ***REMOVED*** macOS 复制路径工具（workflow + Raycast）
+scripts/             # 通用脚本（零依赖优先）
+yuanbao-share-parser/  # 元宝分享解析器
+yuanbao-card-parser/   # 分享卡片解析器（含前端实现 + samples）
+macos-copy-path/       # macOS 复制路径工具（workflow + Raycast）
 ```
 
-***REMOVED******REMOVED*** 排除清单（本仓不含，仅本地保留）
+## 排除清单（本仓不含，仅本地保留）
 
 微信解密/导出类、AI 会话记录分析类脚本含个人隐私数据，**不随本仓开源**，仅留在本地工作区。
 
-***REMOVED******REMOVED*** 许可证
+## 许可证
 
 MIT License

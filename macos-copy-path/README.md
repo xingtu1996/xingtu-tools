@@ -1,33 +1,33 @@
-***REMOVED*** macOS 复制路径工具
+# macOS 复制路径工具
 
 为 Finder 增加类似 IDE 的「复制路径」右键菜单，方便在 AI 对话、终端、文档中快速粘贴文件路径。
 
-***REMOVED******REMOVED*** 功能
+## 功能
 
 - **复制绝对路径**：生成 `~/xingtu/README.md`
 - **复制相对路径**：生成 `工作室/xingtu/README.md`（相对于用户主目录）
 - **复制文件名**：生成 `README.md`
 - **Raycast 脚本**：键盘流一键复制 Finder 当前选中项的绝对路径
 
-***REMOVED******REMOVED*** 安装（Automator 服务）
+## 安装（Automator 服务）
 
-***REMOVED******REMOVED******REMOVED*** 方法一：双击安装（推荐）
+### 方法一：双击安装（推荐）
 
 1. 双击 `复制绝对路径.workflow`
 2. 双击 `复制相对路径.workflow`
 3. 系统会提示「安装服务」或「打开 Automator」，选择安装/打开后保存即可
 4. 服务会自动放到 `~/Library/Services/`
 
-***REMOVED******REMOVED******REMOVED*** 方法二：手动复制
+### 方法二：手动复制
 
 ```bash
 cp -R "复制绝对路径.workflow" "$HOME/Library/Services/"
 cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
 ```
 
-***REMOVED******REMOVED*** 使用
+## 使用
 
-***REMOVED******REMOVED******REMOVED*** 右键菜单
+### 右键菜单
 
 1. 在 Finder 中选中任意文件或文件夹
 2. 右键 → **服务** → **复制绝对路径** / **复制相对路径**
@@ -35,7 +35,7 @@ cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
 
 > macOS Ventura+ 可能在 **右键 → 快速操作** 子菜单里；旧版 macOS 在 **右键 → 服务** 子菜单里。
 
-***REMOVED******REMOVED******REMOVED*** 设置快捷键
+### 设置快捷键
 
 1. 打开 **系统设置 → 键盘 → 键盘快捷键 → 服务**（或 **快速操作**）
 2. 在 **文件和文件夹** 分类下找到「复制绝对路径」和「复制相对路径」
@@ -44,7 +44,7 @@ cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
    - 复制相对路径：`⌃⌥⇧⌘C`
 4. 在 Finder 中选中文件，按下快捷键即可复制
 
-***REMOVED******REMOVED*** Raycast 脚本（可选）
+## Raycast 脚本（可选）
 
 如果你使用 [Raycast](https://www.raycast.com/)：
 
@@ -52,7 +52,7 @@ cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
 2. 选择本目录 `macos-copy-path`
 3. 在 Raycast 中输入 `Copy Finder Absolute Path` 即可复制当前 Finder 选中项的绝对路径
 
-***REMOVED******REMOVED*** 自定义
+## 自定义
 
 如需修改脚本内容：
 
@@ -60,7 +60,7 @@ cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
 2. 在 Automator 中编辑「运行 Shell 脚本」步骤
 3. 保存后会自动更新 `~/Library/Services/` 中的同名服务
 
-***REMOVED******REMOVED*** 文件说明
+## 文件说明
 
 | 文件 | 说明 |
 |------|------|
@@ -71,7 +71,7 @@ cp -R "复制相对路径.workflow" "$HOME/Library/Services/"
 | `generate-workflows.py` | 重新生成 .workflow 的脚本 |
 | `README.md` | 本说明 |
 
-***REMOVED******REMOVED*** 卸载
+## 卸载
 
 ```bash
 rm -rf "$HOME/Library/Services/复制绝对路径.workflow"

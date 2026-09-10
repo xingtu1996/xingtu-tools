@@ -6,18 +6,18 @@
   <title>元宝卡片解析器 · Yuanbao Card Parser</title>
   <style>
     :root {
-      --bg: ***REMOVED***ffffff;
-      --surface: ***REMOVED***f7f8fa;
-      --surface-hover: ***REMOVED***f0f1f4;
-      --border: ***REMOVED***e4e6eb;
-      --text: ***REMOVED***1f2329;
-      --text-secondary: ***REMOVED***5a6068;
-      --text-tertiary: ***REMOVED***8a8f99;
-      --primary: ***REMOVED***056DE8;
-      --primary-light: ***REMOVED***E8F4FD;
-      --success: ***REMOVED***07c160;
-      --warning: ***REMOVED***ff8800;
-      --danger: ***REMOVED***f24c4c;
+      --bg: #ffffff;
+      --surface: #f7f8fa;
+      --surface-hover: #f0f1f4;
+      --border: #e4e6eb;
+      --text: #1f2329;
+      --text-secondary: #5a6068;
+      --text-tertiary: #8a8f99;
+      --primary: #056DE8;
+      --primary-light: #E8F4FD;
+      --success: #07c160;
+      --warning: #ff8800;
+      --danger: #f24c4c;
       --radius: 10px;
       --shadow: 0 1px 3px rgba(0,0,0,0.06);
       --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
@@ -26,15 +26,15 @@
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: ***REMOVED***0d1117;
-        --surface: ***REMOVED***161b22;
-        --surface-hover: ***REMOVED***1f242c;
-        --border: ***REMOVED***30363d;
-        --text: ***REMOVED***c9d1d9;
-        --text-secondary: ***REMOVED***8b949e;
-        --text-tertiary: ***REMOVED***6e7681;
-        --primary: ***REMOVED***58a6ff;
-        --primary-light: ***REMOVED***13233a;
+        --bg: #0d1117;
+        --surface: #161b22;
+        --surface-hover: #1f242c;
+        --border: #30363d;
+        --text: #c9d1d9;
+        --text-secondary: #8b949e;
+        --text-tertiary: #6e7681;
+        --primary: #58a6ff;
+        --primary-light: #13233a;
         --shadow: 0 1px 3px rgba(0,0,0,0.3);
       }
     }
@@ -58,19 +58,19 @@
 
     /* Disclaimer */
     .disclaimer {
-      background: ***REMOVED***fff7e6;
-      border: 1px solid ***REMOVED***ffd591;
+      background: #fff7e6;
+      border: 1px solid #ffd591;
       border-radius: var(--radius);
       padding: 14px 18px;
       margin-bottom: 20px;
-      color: ***REMOVED***873800;
+      color: #873800;
       font-size: 13px;
       display: flex;
       gap: 12px;
       align-items: flex-start;
     }
     @media (prefers-color-scheme: dark) {
-      .disclaimer { background: ***REMOVED***2a1f0d; border-color: ***REMOVED***5c4010; color: ***REMOVED***f5c518; }
+      .disclaimer { background: #2a1f0d; border-color: #5c4010; color: #f5c518; }
     }
     .disclaimer strong { display: block; margin-bottom: 4px; }
 
@@ -192,9 +192,9 @@
     }
 
     .url-warning {
-      background: ***REMOVED***fff2f0;
-      border: 1px solid ***REMOVED***ffccc7;
-      color: ***REMOVED***a8071a;
+      background: #fff2f0;
+      border: 1px solid #ffccc7;
+      color: #a8071a;
       border-radius: 8px;
       padding: 12px 14px;
       margin-top: 10px;
@@ -202,7 +202,7 @@
       display: none;
     }
     @media (prefers-color-scheme: dark) {
-      .url-warning { background: ***REMOVED***2a1215; border-color: ***REMOVED***5c1f24; color: ***REMOVED***ff9c9c; }
+      .url-warning { background: #2a1215; border-color: #5c1f24; color: #ff9c9c; }
     }
     .url-warning.show { display: block; }
     .url-warning strong { display: block; margin-bottom: 4px; }
@@ -229,9 +229,9 @@
       font-family: inherit;
     }
     .btn:hover { background: var(--surface-hover); }
-    .btn.primary { background: var(--primary); border-color: var(--primary); color: ***REMOVED***fff; }
+    .btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
     .btn.primary:hover { filter: brightness(1.05); }
-    .btn.success { background: var(--success); border-color: var(--success); color: ***REMOVED***fff; }
+    .btn.success { background: var(--success); border-color: var(--success); color: #fff; }
     .btn.danger { color: var(--danger); border-color: var(--danger); }
 
     /* Output */
@@ -251,7 +251,7 @@
       cursor: pointer;
       font-family: inherit;
     }
-    .output-tab.active { background: var(--primary); border-color: var(--primary); color: ***REMOVED***fff; }
+    .output-tab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 
     .output-pane { display: none; }
     .output-pane.active { display: block; }
@@ -303,7 +303,7 @@
       white-space: pre-wrap;
       word-break: break-word;
     }
-    .message.human .bubble { background: var(--primary); color: ***REMOVED***fff; border-bottom-right-radius: 4px; }
+    .message.human .bubble { background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
     .message.ai .bubble { background: var(--bg); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
 
     .media-card {
@@ -348,7 +348,7 @@
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0,0,0,0.8);
-      color: ***REMOVED***fff;
+      color: #fff;
       padding: 10px 20px;
       border-radius: 20px;
       font-size: 14px;
@@ -412,7 +412,7 @@
         </div>
 
         <div class="tab-content" id="tab-card-text" data-page-node-id="KlhkHRbFwu8SygMGxD3PgW">
-          <textarea id="input-text" placeholder="在此粘贴从元宝聊天记录中复制的卡片文本，例如：&***REMOVED***10;&***REMOVED***10;标题一行&***REMOVED***10;这里是卡片的正文摘要内容...&***REMOVED***10;&***REMOVED***10;支持多条，用空行分隔。"></textarea>
+          <textarea id="input-text" placeholder="在此粘贴从元宝聊天记录中复制的卡片文本，例如：&#10;&#10;标题一行&#10;这里是卡片的正文摘要内容...&#10;&#10;支持多条，用空行分隔。"></textarea>
           <div class="hint" data-page-node-id="GEofXr6BCTvRGGdqlQywkJ">提示：适合解析元宝生成的 AI 总结卡，或手动复制的分享卡片文本。</div>
         </div>
 
@@ -491,7 +491,7 @@
     const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
     function showToast(msg) {
-      const t = $('***REMOVED***toast');
+      const t = $('#toast');
       t.textContent = msg;
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2000);
@@ -666,7 +666,7 @@
       const human = conv.messages.filter(m => m.speaker === 'human').length;
       const ai = conv.messages.filter(m => m.speaker === 'ai' || m.speaker === 'assistant').length;
       const media = conv.messages.reduce((n, m) => n + (m.media?.length || 0), 0);
-      $('***REMOVED***stats').innerHTML = `
+      $('#stats').innerHTML = `
         <div class="stat"><div class="stat-num">${conv.messages.length}</div><div class="stat-label">消息数</div></div>
         <div class="stat"><div class="stat-num">${human}</div><div class="stat-label">用户</div></div>
         <div class="stat"><div class="stat-num">${ai}</div><div class="stat-label">元宝</div></div>
@@ -675,7 +675,7 @@
     }
 
     function renderPreview(conv) {
-      const list = $('***REMOVED***chat-list');
+      const list = $('#chat-list');
       list.innerHTML = '';
       for (const msg of conv.messages) {
         const isHuman = msg.speaker === 'human';
@@ -705,7 +705,7 @@
     function renderMarkdown(conv) {
       const meta = conv.meta || {};
       const cid = (meta.conversationId || meta.convId || 'unknown').toString().slice(0, 8);
-      const lines = [`***REMOVED*** 元宝分享解析 · ${cid}\n`];
+      const lines = [`# 元宝分享解析 · ${cid}\n`];
 
       const info = [];
       if (meta.agentId) info.push(`Agent: \`${meta.agentId}\``);
@@ -718,7 +718,7 @@
         if (msg.speaker === 'human') role = '🧑 用户';
         else if (msg.speaker === 'ai' || msg.speaker === 'assistant') role = '🤖 元宝';
         else role = msg.speaker;
-        lines.push(`\n***REMOVED******REMOVED*** ${idx + 1}. ${role}\n`);
+        lines.push(`\n## ${idx + 1}. ${role}\n`);
 
         if (msg.title) lines.push(`**${msg.title}**`);
         if (msg.description) lines.push(msg.description);
@@ -744,14 +744,14 @@
 
     function showOutput(conv) {
       currentConv = conv;
-      $('***REMOVED***output-empty').style.display = 'none';
-      $('***REMOVED***output-content').style.display = 'block';
+      $('#output-empty').style.display = 'none';
+      $('#output-content').style.display = 'block';
 
       renderStats(conv);
       renderPreview(conv);
-      $('***REMOVED***md-content').textContent = renderMarkdown(conv);
-      $('***REMOVED***json-content').textContent = JSON.stringify({ meta: conv.meta, messages: conv.messages }, null, 2);
-      $('***REMOVED***raw-content').textContent = renderRaw(conv);
+      $('#md-content').textContent = renderMarkdown(conv);
+      $('#json-content').textContent = JSON.stringify({ meta: conv.meta, messages: conv.messages }, null, 2);
+      $('#raw-content').textContent = renderRaw(conv);
     }
 
     function looksLikeUrl(text) {
@@ -760,10 +760,10 @@
 
     function doParse() {
       const activeTab = $('.tab.active').dataset.tab;
-      const urlWarning = $('***REMOVED***url-warning');
+      const urlWarning = $('#url-warning');
       try {
         if (activeTab === 'html-source') {
-          const html = $('***REMOVED***input-html').value.trim();
+          const html = $('#input-html').value.trim();
           if (!html) { showToast('请先粘贴 HTML 源码'); return; }
           if (looksLikeUrl(html)) {
             urlWarning.classList.add('show');
@@ -773,7 +773,7 @@
           urlWarning.classList.remove('show');
           showOutput(parseShareHtml(html));
         } else {
-          const text = $('***REMOVED***input-text').value.trim();
+          const text = $('#input-text').value.trim();
           if (!text) { showToast('请先粘贴卡片文本'); return; }
           showOutput(parseCardText(text));
         }
@@ -790,7 +790,7 @@
         $$('.tab').forEach(b => b.classList.remove('active'));
         $$('.tab-content').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
-        $(`***REMOVED***tab-${btn.dataset.tab}`).classList.add('active');
+        $(`#tab-${btn.dataset.tab}`).classList.add('active');
       });
     });
 
@@ -799,26 +799,26 @@
         $$('.output-tab').forEach(b => b.classList.remove('active'));
         $$('.output-pane').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
-        $(`***REMOVED***pane-${btn.dataset.pane}`).classList.add('active');
+        $(`#pane-${btn.dataset.pane}`).classList.add('active');
       });
     });
 
-    $('***REMOVED***btn-parse').addEventListener('click', doParse);
-    $('***REMOVED***btn-clear').addEventListener('click', () => {
-      $('***REMOVED***input-html').value = '';
-      $('***REMOVED***input-text').value = '';
-      $('***REMOVED***output-empty').style.display = 'block';
-      $('***REMOVED***output-content').style.display = 'none';
+    $('#btn-parse').addEventListener('click', doParse);
+    $('#btn-clear').addEventListener('click', () => {
+      $('#input-html').value = '';
+      $('#input-text').value = '';
+      $('#output-empty').style.display = 'block';
+      $('#output-content').style.display = 'none';
       currentConv = null;
       showToast('已清空');
     });
 
-    $('***REMOVED***btn-sample').addEventListener('click', () => {
+    $('#btn-sample').addEventListener('click', () => {
       const activeTab = $('.tab.active').dataset.tab;
       if (activeTab === 'html-source') {
-        $('***REMOVED***input-html').value = '<!-- 示例：请替换为真实的 yb.tencent.com 分享页 HTML 源码 -->\n<script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"data":{"conversation_info":{"conversationId":"demo-123","data":{"extra":[{"speaker":"human","speechesV2":[{"content":[{"text":"帮我总结一下 AI 编程工具的最新趋势"}]}]},{"speaker":"ai","speechesV2":[{"content":[{"text":"当前 AI 编程工具正从 Copilot 模式向 Agent 模式演进..."}]}]}]}}}}}}</script>';
+        $('#input-html').value = '<!-- 示例：请替换为真实的 yb.tencent.com 分享页 HTML 源码 -->\n<script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"data":{"conversation_info":{"conversationId":"demo-123","data":{"extra":[{"speaker":"human","speechesV2":[{"content":[{"text":"帮我总结一下 AI 编程工具的最新趋势"}]}]},{"speaker":"ai","speechesV2":[{"content":[{"text":"当前 AI 编程工具正从 Copilot 模式向 Agent 模式演进..."}]}]}]}}}}}}</script>';
       } else {
-        $('***REMOVED***input-text').value = 'AI 编程工具趋势\n当前工具正从补全型 Copilot 向自主型 Agent 演进，代表产品包括 Claude Code、OpenCode 等。\n\n另一个标题\n这是另一条卡片内容的示例。';
+        $('#input-text').value = 'AI 编程工具趋势\n当前工具正从补全型 Copilot 向自主型 Agent 演进，代表产品包括 Claude Code、OpenCode 等。\n\n另一个标题\n这是另一条卡片内容的示例。';
       }
       showToast('已载入示例');
     });
@@ -826,7 +826,7 @@
     $$('[data-copy]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const id = btn.dataset.copy;
-        const text = $(`***REMOVED***${id}`).textContent;
+        const text = $(`#${id}`).textContent;
         try {
           await navigator.clipboard.writeText(text);
           showToast('已复制到剪贴板');

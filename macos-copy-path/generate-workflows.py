@@ -1,4 +1,4 @@
-***REMOVED***!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 生成 macOS Finder 右键服务：复制绝对路径 / 相对路径
 运行后会生成两个 .workflow bundle，双击即可安装到 ~/Library/Services
@@ -40,7 +40,7 @@ def make_run_shell_script_action(name: str, script: str, shell: str = "/bin/zsh"
             "ActionParameters": {
                 "COMMAND_STRING": script,
                 "CheckedForUserDefaultShell": True,
-                "inputMethod": 1,  ***REMOVED*** 1 = as arguments
+                "inputMethod": 1,  # 1 = as arguments
                 "shell": shell,
                 "source": "",
             },
@@ -144,34 +144,34 @@ def write_workflow(bundle_name: str, workflow_data: dict):
 
 
 def main():
-    ***REMOVED*** 复制绝对路径
-    abs_script = '''***REMOVED***!/bin/zsh
-***REMOVED*** 复制选中文件/文件夹的绝对路径到剪贴板
+    # 复制绝对路径
+    abs_script = '''#!/bin/zsh
+# 复制选中文件/文件夹的绝对路径到剪贴板
 for f in "$@"; do
     realpath "$f"
 done | pbcopy
 
-osascript -e "display notification \"已复制 $***REMOVED*** 个绝对路径\" with title \"复制绝对路径\""
+osascript -e "display notification \"已复制 $# 个绝对路径\" with title \"复制绝对路径\""
 '''
 
-    ***REMOVED*** 复制相对路径（相对于用户主目录）
-    rel_script = '''***REMOVED***!/bin/zsh
-***REMOVED*** 复制选中文件/文件夹相对于主目录的相对路径到剪贴板
+    # 复制相对路径（相对于用户主目录）
+    rel_script = '''#!/bin/zsh
+# 复制选中文件/文件夹相对于主目录的相对路径到剪贴板
 for f in "$@"; do
     realpath --relative-to="$HOME" "$f"
 done | pbcopy
 
-osascript -e "display notification \"已复制 $***REMOVED*** 个相对路径\" with title \"复制相对路径\""
+osascript -e "display notification \"已复制 $# 个相对路径\" with title \"复制相对路径\""
 '''
 
-    ***REMOVED*** 复制文件名
-    filename_script = '''***REMOVED***!/bin/zsh
-***REMOVED*** 复制选中文件/文件夹的文件名到剪贴板
+    # 复制文件名
+    filename_script = '''#!/bin/zsh
+# 复制选中文件/文件夹的文件名到剪贴板
 for f in "$@"; do
     basename "$f"
 done | pbcopy
 
-osascript -e "display notification \"已复制 $***REMOVED*** 个文件名\" with title \"复制文件名\""
+osascript -e "display notification \"已复制 $# 个文件名\" with title \"复制文件名\""
 '''
 
     write_workflow("复制绝对路径.workflow", make_service_workflow("复制绝对路径", abs_script))

@@ -1,5 +1,5 @@
-***REMOVED***!/usr/bin/env python3
-***REMOVED*** -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 飞轮效率观测探针（flywheel_monitor.py）
 ====================================
@@ -13,8 +13,8 @@
   L3 会话层    sessions / session_usage（上下文占用 used/size、credit 成本）
 
 用法：
-  python3 tools/flywheel_monitor.py                 ***REMOVED*** 默认路径，刷新看板
-  python3 tools/flywheel_monitor.py --days 14       ***REMOVED*** 只看近 14 天
+  python3 tools/flywheel_monitor.py                 # 默认路径，刷新看板
+  python3 tools/flywheel_monitor.py --days 14       # 只看近 14 天
 输出：
   outputs/内容战略分析/飞轮效率看板.html（稳定文件名，可反复刷新）
 """
@@ -27,7 +27,7 @@ import json
 import os
 import sqlite3
 
-***REMOVED*** ---------------------------------------------------------------- 基础工具
+# ---------------------------------------------------------------- 基础工具
 
 def ts(ms, fmt="%m-%d %H:%M"):
     try:
@@ -75,7 +75,7 @@ def rrule_text(rr):
         return f"每周{d} {h}:00"
     return rr
 
-***REMOVED*** ---------------------------------------------------------------- 数据采集
+# ---------------------------------------------------------------- 数据采集
 
 def collect_db(db_path, days):
     """L1 自动化层 + L3 会话层"""
@@ -115,7 +115,7 @@ def collect_db(db_path, days):
                 "date": ts(s, "%m-%d"),
             })
 
-    ***REMOVED*** 今日会话（交互 + 后台自动化）
+    # 今日会话（交互 + 后台自动化）
     t0 = now.replace(hour=0, minute=0, second=0, microsecond=0).timestamp() * 1000
     sess = list(c.execute(
         "SELECT id,title,created_at,updated_at,is_background_automation FROM sessions WHERE created_at>=? ORDER BY created_at", (t0,)))
@@ -192,11 +192,11 @@ def parallel_clusters(directory, days=1):
         })
     return out
 
-***REMOVED*** ---------------------------------------------------------------- 渲染
+# ---------------------------------------------------------------- 渲染
 
 CSS = """
-:root{--bg:***REMOVED***f5f6f8;--card:***REMOVED***ffffff;--ink:***REMOVED***1f2329;--sub:***REMOVED***6b7280;--line:***REMOVED***e5e7eb;
---blue:***REMOVED***2563eb;--green:***REMOVED***16a34a;--red:***REMOVED***dc2626;--amber:***REMOVED***d97706;--chip:***REMOVED***eef2ff}
+:root{--bg:#f5f6f8;--card:#ffffff;--ink:#1f2329;--sub:#6b7280;--line:#e5e7eb;
+--blue:#2563eb;--green:#16a34a;--red:#dc2626;--amber:#d97706;--chip:#eef2ff}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
 background:var(--bg);color:var(--ink);padding:28px;line-height:1.65}
@@ -212,11 +212,11 @@ h2{font-size:16px;margin:26px 0 12px;padding-left:10px;border-left:4px solid var
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;color:var(--sub);font-weight:600;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
-td{padding:7px 8px;border-bottom:1px solid ***REMOVED***f1f2f4;vertical-align:middle}
+td{padding:7px 8px;border-bottom:1px solid #f1f2f4;vertical-align:middle}
 tr:last-child td{border-bottom:none}
 .badge{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600}
-.b-ok{background:***REMOVED***dcfce7;color:var(--green)} .b-bad{background:***REMOVED***fee2e2;color:var(--red)}
-.b-wait{background:***REMOVED***fef3c7;color:var(--amber)} .b-info{background:var(--chip);color:var(--blue)}
+.b-ok{background:#dcfce7;color:var(--green)} .b-bad{background:#fee2e2;color:var(--red)}
+.b-wait{background:#fef3c7;color:var(--amber)} .b-info{background:var(--chip);color:var(--blue)}
 .gantt-row{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12px}
 .gantt-row .t{width:118px;color:var(--sub);flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gantt-row .bar{height:14px;border-radius:4px;min-width:3px}
@@ -224,7 +224,7 @@ tr:last-child td{border-bottom:none}
 .bar.ok{background:var(--green)} .bar.bad{background:var(--red)}
 .ubar{background:var(--line);border-radius:99px;height:8px;width:110px;display:inline-block;vertical-align:middle;margin-right:6px}
 .ubar>i{display:block;height:8px;border-radius:99px;background:var(--blue)}
-code{background:***REMOVED***f3f4f6;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;font-family:ui-monospace,Menlo,monospace}
+code{background:#f3f4f6;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px;font-family:ui-monospace,Menlo,monospace}
 .note{font-size:12px;color:var(--sub);margin-top:8px}
 .big{font-size:30px;font-weight:800;color:var(--blue)}
 .method li{margin:6px 0;font-size:13.5px}
@@ -242,7 +242,7 @@ def render(db, jsonl_rows, clusters, args):
     today_credit = sum(s["credit"] for s in today)
     main_ctx = max(((s["used"], s["size"]) for s in today), default=(0, 0))
 
-    ***REMOVED*** --- 自动化健康表 ---
+    # --- 自动化健康表 ---
     a_rows = []
     for a in autos:
         ar = [r for r in runs if r["automation_id"] == a["id"]]
@@ -267,7 +267,7 @@ def render(db, jsonl_rows, clusters, args):
 <td>{dur_text(avg)}</td><td>{last_txt}</td>
 <td>{ts(a["next_run_at"], "%m-%d %H:%M")}</td><td>{badge}</td></tr>""")
 
-    ***REMOVED*** --- 运行时间线（甘特） ---
+    # --- 运行时间线（甘特） ---
     max_d = 4200
     g_rows = []
     for r in runs:
@@ -280,7 +280,7 @@ def render(db, jsonl_rows, clusters, args):
             f'<div class="bar {mark}" style="width:{max(w, 0.6)}%"></div>'
             f'<span class="d">{flag} {dur_text(r["dur"])}{"" if r["success"] else " · 失败"}</span></div>')
 
-    ***REMOVED*** --- 今日会话成本 ---
+    # --- 今日会话成本 ---
     s_rows = []
     for s in sorted(today, key=lambda x: -x["credit"]):
         pct = (s["used"] / s["size"] * 100) if s["size"] else 0
@@ -290,7 +290,7 @@ def render(db, jsonl_rows, clusters, args):
 <td><span class="ubar"><i style="width:{min(pct, 100):.0f}%"></i></span>{s["used"]:,}/{s["size"]:,}</td>
 <td>{dur_text(s["dur"])}</td><td><b>{s["credit"]}</b></td></tr>""")
 
-    ***REMOVED*** --- L2 埋点（Agent 层并行效率） ---
+    # --- L2 埋点（Agent 层并行效率） ---
     if jsonl_rows:
         jr = [x for x in jsonl_rows if x.get("startedAt") and x.get("finishedAt")]
         for x in jr:
@@ -311,7 +311,7 @@ def render(db, jsonl_rows, clusters, args):
         l2 = """<div class="card"><div style="font-size:13.5px">暂无埋点数据。周日晚 22:00「变现飞轮」首跑后，每个 agent 会向
 <code>outputs/内容战略分析/飞轮运行日志.jsonl</code> 追加起止时间，届时此卡片自动出现精确加速比。</div></div>"""
 
-    ***REMOVED*** --- 产物时间线（并行完成簇） ---
+    # --- 产物时间线（并行完成簇） ---
     c_html = []
     for cl in clusters:
         badge = '<span class="badge b-info">并行完成簇</span>' if cl["parallel"] else '<span class="badge b-ok">顺序产出</span>'
@@ -321,7 +321,7 @@ def render(db, jsonl_rows, clusters, args):
             f'<b>{cl["start"].strftime("%m-%d %H:%M:%S")}</b> · {len(cl["files"])} 个产物 · 簇跨度 {dur_text(cl["span"])}</div>'
             f'<div style="font-size:12.5px;color:var(--sub)">{files}</div></div>')
 
-    ***REMOVED*** --- 健康诊断 ---
+    # --- 健康诊断 ---
     diag = []
     for a in autos:
         ar = [r for r in runs if r["automation_id"] == a["id"]]
@@ -391,7 +391,7 @@ def render(db, jsonl_rows, clusters, args):
 <div class="footer">flywheel_monitor.py · 单文件零依赖 · 每次运行覆盖刷新本看板</div>
 </div></body></html>"""
 
-***REMOVED*** ---------------------------------------------------------------- 主流程
+# ---------------------------------------------------------------- 主流程
 
 def main():
     base = "~/xingtu"

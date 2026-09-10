@@ -1,14 +1,14 @@
-***REMOVED***!/bin/zsh
+#!/bin/zsh
 
-***REMOVED*** Required parameters:
-***REMOVED*** @raycast.schemaVersion 1
-***REMOVED*** @raycast.title Copy Finder Absolute Path
-***REMOVED*** @raycast.mode silent
-***REMOVED*** @raycast.packageName File Utils
-***REMOVED*** @raycast.icon 📁
-***REMOVED*** @raycast.description Copy the absolute path of the currently selected Finder item to the clipboard.
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Copy Finder Absolute Path
+# @raycast.mode silent
+# @raycast.packageName File Utils
+# @raycast.icon 📁
+# @raycast.description Copy the absolute path of the currently selected Finder item to the clipboard.
 
-***REMOVED*** 获取 Finder 当前选中的第一个文件/文件夹
+# 获取 Finder 当前选中的第一个文件/文件夹
 selected=$(osascript <<'APPLESCRIPT'
 tell application "Finder"
     set theSelection to selection as alias list

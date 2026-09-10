@@ -1,5 +1,5 @@
-***REMOVED***!/usr/bin/env python3
-***REMOVED*** -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 yuanbao_share_parser.py — 元宝微信分享链接解析器
 
@@ -17,16 +17,16 @@ yuanbao_share_parser.py — 元宝微信分享链接解析器
 
 用法
 ----
-    ***REMOVED*** 抓成 Markdown 打到终端
+    # 抓成 Markdown 打到终端
     python yuanbao_share_parser.py "https://yb.tencent.com/wx/ct/f/YFuacU3Vg4MNk3"
 
-    ***REMOVED*** 输出 JSON 到文件
+    # 输出 JSON 到文件
     python yuanbao_share_parser.py "<URL>" --format json --output out.json
 
-    ***REMOVED*** 只打印消息角色概览
+    # 只打印消息角色概览
     python yuanbao_share_parser.py "<URL>" --list
 
-    ***REMOVED*** 用普通浏览器 UA（部分场景不需要微信 UA）
+    # 用普通浏览器 UA（部分场景不需要微信 UA）
     python yuanbao_share_parser.py "<URL>" --browser-ua
 """
 
@@ -39,7 +39,7 @@ import urllib.request
 import urllib.error
 from urllib.parse import urlparse
 
-***REMOVED*** 模拟 iPhone 微信内打开分享页的请求头
+# 模拟 iPhone 微信内打开分享页的请求头
 WECHAT_UA = (
     "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) "
     "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 "
@@ -52,9 +52,9 @@ BROWSER_UA = (
 )
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 1. 抓取
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 1. 抓取
+# --------------------------------------------------------------------------- #
 def fetch_html(url: str, use_wechat_ua: bool = True) -> str:
     """模拟微信移动端请求，返回分享页 HTML 文本。"""
     ua = WECHAT_UA if use_wechat_ua else BROWSER_UA
@@ -75,9 +75,9 @@ def fetch_html(url: str, use_wechat_ua: bool = True) -> str:
         raise SystemExit(f"[网络错误] 无法访问 {url}：{e.reason}")
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 2. 提取 __NEXT_DATA__
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 2. 提取 __NEXT_DATA__
+# --------------------------------------------------------------------------- #
 def extract_next_data(html_text: str) -> dict:
     m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html_text, re.S)
     if not m:
@@ -88,9 +88,9 @@ def extract_next_data(html_text: str) -> dict:
         raise SystemExit(f"[解析失败] __NEXT_DATA__ 不是合法 JSON：{e}")
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 3. 递归解码「字符串化的 JSON」
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 3. 递归解码「字符串化的 JSON」
+# --------------------------------------------------------------------------- #
 def _coerce(obj):
     """如果 obj 是看起来像 JSON 的字符串，就解一层；递归处理。"""
     if isinstance(obj, str):
@@ -131,7 +131,7 @@ def extract_messages(next_data: dict):
     if not isinstance(raw_msgs, list):
         raw_msgs = [raw_msgs] if raw_msgs else []
 
-    ***REMOVED*** 对话级元信息补充
+    # 对话级元信息补充
     if isinstance(data, dict):
         meta.setdefault("convId", data.get("convId"))
         meta.setdefault("platform", data.get("platform"))
@@ -144,9 +144,9 @@ def extract_messages(next_data: dict):
     return raw_msgs, meta
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 4. 解析单条消息
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 4. 解析单条消息
+# --------------------------------------------------------------------------- #
 _TEXT_FIELDS = ("content", "text", "answer", "thinkText", "reasoningContent")
 _MEDIA_FIELDS = ("author", "title", "coverUrl", "type", "duration", "exportId", "source", "mediaId")
 _SKIP_SPEECH = ("[视频号消息]", "[图片]", "[视频]", "[文件]", "[链接]", "[语音]")
@@ -158,7 +158,7 @@ def parse_message(msg) -> dict | None:
     speaker = msg.get("speaker") or msg.get("role") or "unknown"
     parts, media = [], []
 
-    ***REMOVED*** 首选 speechesV2 结构
+    # 首选 speechesV2 结构
     for s in (msg.get("speechesV2") or []):
         c = s.get("content") if isinstance(s, dict) else None
         if isinstance(c, list):
@@ -174,7 +174,7 @@ def parse_message(msg) -> dict | None:
         elif isinstance(c, str):
             parts.append(c)
 
-    ***REMOVED*** 兜底：兼容老结构
+    # 兜底：兼容老结构
     if not parts:
         if isinstance(msg.get("content"), str):
             parts.append(msg["content"])
@@ -189,14 +189,14 @@ def parse_message(msg) -> dict | None:
     }
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 5. 渲染
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 5. 渲染
+# --------------------------------------------------------------------------- #
 def render_markdown(conversation: dict) -> str:
     meta = conversation["meta"]
     lines = []
     cid = (meta.get("conversationId") or meta.get("convId") or "unknown")[:8]
-    lines.append(f"***REMOVED*** 元宝分享解析 · {cid}\n")
+    lines.append(f"# 元宝分享解析 · {cid}\n")
 
     info = []
     if meta.get("agentId"):
@@ -215,7 +215,7 @@ def render_markdown(conversation: dict) -> str:
             role = "🤖 元宝"
         else:
             role = msg["speaker"]
-        lines.append(f"\n***REMOVED******REMOVED*** {idx}. {role}\n")
+        lines.append(f"\n## {idx}. {role}\n")
         if msg["text"]:
             lines.append(msg["text"])
         for m in msg["media"]:
@@ -233,9 +233,9 @@ def render_json(conversation: dict) -> str:
     return json.dumps(conversation, ensure_ascii=False, indent=2)
 
 
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
-***REMOVED*** 6. CLI
-***REMOVED*** --------------------------------------------------------------------------- ***REMOVED***
+# --------------------------------------------------------------------------- #
+# 6. CLI
+# --------------------------------------------------------------------------- #
 def main():
     ap = argparse.ArgumentParser(
         description="元宝微信分享链接解析器（零依赖，标准库实现）",

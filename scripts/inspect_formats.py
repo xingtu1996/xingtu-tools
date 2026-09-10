@@ -1,5 +1,5 @@
-***REMOVED***!/usr/bin/env python3
-***REMOVED*** -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """抽样确认各 AI 工具会话数据的真实格式。"""
 import os, json, sqlite3, glob
 
@@ -29,7 +29,7 @@ def sqlite_keys(p):
                 info[t] = cnt
             except Exception:
                 pass
-        ***REMOVED*** ItemTable key 前缀分布
+        # ItemTable key 前缀分布
         keys = []
         if 'ItemTable' in tables:
             try:
