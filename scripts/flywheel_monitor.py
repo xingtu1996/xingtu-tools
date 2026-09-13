@@ -8,7 +8,7 @@
 
   L1 自动化层  ~/.workbuddy/workbuddy.db 的 automations / automation_runs
                （每次运行的 startedAt/finishedAt → 时长、成功率、产出字数）
-  L2 Agent 层  outputs/内容战略分析/飞轮运行日志.jsonl（飞轮自动化埋点契约）
+  L2 Agent 层  outputs/flywheel/飞轮运行日志.jsonl（飞轮自动化埋点契约）
                （每个 agent 的起止时间 → 并行加速比 = Σ个体时长 / 墙钟时长）
   L3 会话层    sessions / session_usage（上下文占用 used/size、credit 成本）
 
@@ -16,7 +16,7 @@
   python3 tools/flywheel_monitor.py                 # 默认路径，刷新看板
   python3 tools/flywheel_monitor.py --days 14       # 只看近 14 天
 输出：
-  outputs/内容战略分析/飞轮效率看板.html（稳定文件名，可反复刷新）
+  outputs/flywheel/飞轮效率看板.html（稳定文件名，可反复刷新）
 """
 
 import argparse
@@ -161,7 +161,7 @@ def collect_jsonl(path):
 
 
 def parallel_clusters(directory, days=1):
-    """产物时间线：把 outputs/内容战略分析/ 下近 days 天的产物按修改时间聚类，
+    """产物时间线：把 outputs/flywheel/ 下近 days 天的产物按修改时间聚类，
     间隔 ≤300s 的算同一簇；≥3 个文件的簇 = 并行完成簇（多 agent 同时收工的物证）。"""
     items = []
     if not os.path.isdir(directory):
@@ -309,7 +309,7 @@ def render(db, jsonl_rows, clusters, args):
 <table><tr><th>环节</th><th>Agent</th><th>个体时长</th><th>产出字数</th><th>结果</th></tr>{j_rows}</table></div>"""
     else:
         l2 = """<div class="card"><div style="font-size:13.5px">暂无埋点数据。周日晚 22:00「变现飞轮」首跑后，每个 agent 会向
-<code>outputs/内容战略分析/飞轮运行日志.jsonl</code> 追加起止时间，届时此卡片自动出现精确加速比。</div></div>"""
+<code>outputs/flywheel/飞轮运行日志.jsonl</code> 追加起止时间，届时此卡片自动出现精确加速比。</div></div>"""
 
     # --- 产物时间线（并行完成簇） ---
     c_html = []
@@ -368,7 +368,7 @@ def render(db, jsonl_rows, clusters, args):
 {l2}
 
 <h2>④ 产物时间线 · 并行完成簇物证</h2>
-{''.join(c_html) if c_html else '<div class="card" style="font-size:13px">outputs/内容战略分析/ 近 24h 无新产物。</div>'}
+{''.join(c_html) if c_html else '<div class="card" style="font-size:13px">outputs/flywheel/ 近 24h 无新产物。</div>'}
 <div class="note" style="margin-top:-6px">同一簇内 ≥3 个产物几乎同时落地 = 多 agent 并行收工的直接物证（今天 4 份报告落在 2 分 21 秒窗口内）。</div>
 
 <h2>⑤ 今日会话成本观测</h2>
@@ -397,8 +397,8 @@ def main():
     base = "~/xingtu"
     ap = argparse.ArgumentParser(description="飞轮效率观测探针")
     ap.add_argument("--db", default=os.path.expanduser("~/.workbuddy/workbuddy.db"))
-    ap.add_argument("--outdir", default=os.path.join(base, "outputs", "内容战略分析"))
-    ap.add_argument("--jsonl", default=os.path.join(base, "outputs", "内容战略分析", "飞轮运行日志.jsonl"))
+    ap.add_argument("--outdir", default=os.path.join(base, "outputs", "flywheel"))
+    ap.add_argument("--jsonl", default=os.path.join(base, "outputs", "flywheel", "飞轮运行日志.jsonl"))
     ap.add_argument("--days", type=int, default=14)
     ap.add_argument("--artifact-days", type=float, default=1)
     args = ap.parse_args()
