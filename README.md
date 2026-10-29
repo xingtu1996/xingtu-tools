@@ -23,7 +23,7 @@
 | yuanbao-share-parser/ | 元宝分享解析 | 解析元宝分享链接/卡片内容 |
 | yuanbao-card-parser/ | 分享卡片解析 | 前端解析分享卡片（含 samples）|
 | macos-copy-path/ | macOS 复制路径 | Finder/Raycast 复制绝对/相对路径工具 |
-| cli/ | 零依赖开发者 CLI | 网络诊断/安全删除/批量处理（2026-10-12 自 xingtu-cli 合并） |
+| cli/ | 零依赖开发者 CLI 镜像 | 网络诊断/安全删除/批量处理；CLI 主题独立维护于 [xingtu-cli](https://github.com/xingtu1996/xingtu-cli)，本仓仅聚合收录镜像 |
 
 ## 用法
 
@@ -39,7 +39,7 @@ bash scripts/qb-query.sh "SELECT 1"
 
 ```
 scripts/             # 通用脚本（零依赖优先）
-cli/                 # 零依赖开发者 CLI（原 xingtu-cli，2026-10-12 合并）
+cli/                 # 零依赖开发者 CLI 镜像（权威源：独立仓 xingtu-cli）
 yuanbao-share-parser/  # 元宝分享解析器
 yuanbao-card-parser/   # 分享卡片解析器（含前端实现 + samples）
 macos-copy-path/       # macOS 复制路径工具（workflow + Raycast）
@@ -60,3 +60,4 @@ MIT License
 - 公众号「行途技术手记」（长文首发，微信搜索关注）
 - GitHub / X：`@xingtu1996` ｜ 博客：https://xingtu1996.github.io
 - 方法论旗舰仓：[xingtu-ai-engineering](https://github.com/xingtu1996/xingtu-ai-engineering)
+- CLI 独立主题仓：[xingtu-cli](https://github.com/xingtu1996/xingtu-cli)
