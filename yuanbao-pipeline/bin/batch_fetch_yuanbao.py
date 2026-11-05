@@ -119,7 +119,9 @@ def extract_title_and_body(raw, token):
     md = html_to_markdown(raw)
     # 3) 标题回退：取"听全文"之前、UI 用户名之后的第一行
     if not title:
-        i_user = md.find("Justin Li")
+        # SAF-010：作者显示名不得硬编码进公开仓，改由环境变量注入
+        _author = os.environ.get("YUANBAO_AUTHOR_NAME", "")
+        i_user = md.find(_author) if _author else -1
         i_full = md.find("听全文")
         if i_user != -1 and i_full != -1 and i_user < i_full:
             cand = md[i_user + 9:i_full].strip()

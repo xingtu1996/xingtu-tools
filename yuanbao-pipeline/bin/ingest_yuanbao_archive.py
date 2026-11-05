@@ -399,7 +399,7 @@ def archive_group(dbdir, group, dry_run):
 def self_test():
     print("=== self-test: 去敏 + 群聊归档逻辑 ===")
     sample = ("[2026-08-20 10:00] 张三: 客户A公司的项目明天上线\n"
-              "[2026-08-20 10:01] 李四: 记得同步给 wangwu@co-mall.com\n"
+              "[2026-08-20 10:01] 李四: 记得同步给 wangwu@example.com\n"
               "[2026-08-20 10:02] 张三: 这个 API key sk-abc123 别外传")
     p = archive_group_text("测试技术群", sample, dry_run=True)
     # 验证去敏命中（客户/邮箱/key 应被替换）
